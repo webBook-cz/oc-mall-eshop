@@ -1,0 +1,5 @@
+{% set rating = rating|round %}
+
+{% for i in range(1, 5) %}
+    {% partial __SELF__ ~ '::star' active=rating >= i value=i %}
+{% endfor %}

@@ -1,0 +1,115 @@
+fields:
+    parent:
+        label: 'offline.mall::lang.category.parent'
+        type: dropdown
+        span: left
+    slug:
+        label: 'offline.mall::lang.common.slug'
+        oc.commentPosition: ''
+        span: auto
+        preset:
+            field: name
+            type: slug
+        type: text
+    name:
+        label: 'offline.mall::lang.category.name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    image:
+        label: 'offline.mall::lang.common.main_image'
+        oc.commentPosition: ''
+        mode: image
+        prompt: 'offline.mall::lang.common.select_image'
+        imageWidth: '120'
+        imageHeight: '120'
+        useCaption: true
+        thumbOptions:
+            mode: crop
+            extension: auto
+        span: auto
+        type: fileupload
+    code:
+        label: 'offline.mall::lang.category.code'
+        comment: 'offline.mall::lang.category.code_comment'
+        span: left
+        type: text
+tabs:
+    fields:
+        inherit_property_groups:
+            label: 'offline.mall::lang.category.inherit_property_groups'
+            span: auto
+            context: update
+            dependsOn: parent
+            type: switch
+            comment: 'offline.mall::lang.category.inherit_property_groups_comment'
+            tab: 'offline.mall::lang.common.property_groups'
+        property_groups:
+            span: full
+            path: $/offline/mall/controllers/categories/_property_groups.htm
+            context: update
+            trigger:
+                action: hide
+                field: inherit_property_groups
+                condition: checked
+            type: partial
+            tab: 'offline.mall::lang.common.property_groups'
+        inherit_review_categories:
+            label: 'offline.mall::lang.category.inherit_review_categories'
+            span: auto
+            context: update
+            dependsOn: parent
+            type: switch
+            comment: 'offline.mall::lang.category.inherit_review_categories_comment'
+            tab: 'offline.mall::lang.common.review_categories'
+        review_categories:
+            oc.commentPosition: ''
+            span: full
+            path: $/offline/mall/controllers/categories/_review_categories.htm
+            type: partial
+            tab: 'offline.mall::lang.common.review_categories'
+            context: update
+            trigger:
+                action: hide
+                field: inherit_review_categories
+                condition: checked
+        products:
+            oc.commentPosition: ''
+            span: full
+            path: $/offline/mall/controllers/categories/_products.htm
+            type: partial
+            tab: 'offline.mall::lang.common.products'
+            context: update
+        meta_title:
+            label: 'offline.mall::lang.common.meta_title'
+            oc.commentPosition: ''
+            span: right
+            type: text
+            tab: 'offline.mall::lang.product.description'
+        description_short:
+            label: 'offline.mall::lang.product.description_short'
+            size: small
+            oc.commentPosition: ''
+            span: left
+            type: textarea
+            tab: 'offline.mall::lang.product.description'
+        meta_description:
+            label: 'offline.mall::lang.common.meta_description'
+            size: large
+            oc.commentPosition: ''
+            span: right
+            type: textarea
+            tab: 'offline.mall::lang.product.description'
+        description:
+            label: 'offline.mall::lang.product.description'
+            size: huge
+            oc.commentPosition: ''
+            span: left
+            type: richeditor
+            tab: 'offline.mall::lang.product.description'
+        google_product_category_id:
+            label: 'offline.mall::lang.category.google_product_category_id'
+            comment: 'offline.mall::lang.category.google_product_category_id_comment'
+            span: right
+            type: number
+            tab: 'offline.mall::lang.product.description'

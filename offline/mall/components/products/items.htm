@@ -1,0 +1,11 @@
+<div class="row">
+    {% for item in items %}
+        {% partial 'productsListItem/item' item=item %}
+    {% endfor %}
+</div>
+
+{% if __SELF__.paginate %}
+    <div class="pagination">
+        {{ items | raw }}
+    </div>
+{% endif %}

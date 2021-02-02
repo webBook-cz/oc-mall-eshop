@@ -1,0 +1,153 @@
+<div class="layout responsive-sidebar">
+    <div class="layout-cell">
+
+        <div class="layout">
+            <div class="control-breadcrumb breadcrumb-flush">
+                <ul>
+                    <li>
+                        <a href="<?= $ordersList ?>">
+                            <?= e(trans('offline.mall::lang.common.orders')) ?>
+                        </a>
+                    </li>
+                    <li><?= e($order['invoice_number']) ?></li>
+                </ul>
+            </div>
+
+            <div class="layout-row">
+                <div class="padded-container layout">
+                    <div class="layout">
+                        <div class="layout-row">
+                            <div class="scoreboard">
+                                <div data-control="toolbar">
+                                    <?= $this->makePartial('detail_scoreboard') ?>
+                                </div>
+                            </div>
+                            <div class="control-toolbar">
+                                <div class="toolbar-item toolbar-primary">
+                                    <div data-control="toolbar">
+                                        <?= $this->makePartial('toolbar') ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?= $this->makePartial('tracking_modal') ?>
+                            <?= $this->makePartial('invoice_number_modal') ?>
+
+                            <div class="control-tabs primary-tabs" data-control="tab">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#order">
+                                            <?= e(trans('offline.mall::lang.common.products')) ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#payments">
+                                            <?= e(trans('offline.mall::lang.common.payments')) ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#gls">
+                                            <?= e(trans('webbook.mallextensions::lang.plugin.labels.shipping')) ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active">
+                                        <div style="margin-left: -20px; margin-right: -20px; margin-top: -21px;">
+                                            <div class="control-list">
+                                                <?= $this->makePartial('items') ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane">
+                                        <div class="form-group">
+                                            <?= $this->relationRender('payment_logs', ['readOnly' => true]); ?>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-preview text-field span-full">
+                                                    <label for="Form-field-User-email"><?= e(trans('webbook.mallextensions::lang.plugin.labels.package_number')) ?></label>
+                                                    <!-- Text -->
+                                                    <span class="form-control"> <?= e($order['package']['number']) ?></span>
+                                                </div> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-preview text-field span-full">
+                                                    <label for="Form-field-User-email"><?= e(trans('webbook.mallextensions::lang.plugin.labels.package_code')) ?></label>
+                                                    <!-- Text -->
+                                                    <span class="form-control"> <?= e($order['package']['code']) ?></span>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-preview text-field span-full">
+                                                    <label for="Form-field-User-email"><?= e(trans('webbook.mallextensions::lang.plugin.labels.package_carrier')) ?></label>
+                                                    <!-- Text -->
+                                                    <span class="form-control"> <?= e($order['package']['carrier']) ?></span>
+                                                </div> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-group-preview text-field span-full">
+                                                    <label for="Form-field-User-email"><?= e(trans('webbook.mallextensions::lang.plugin.labels.pick_up_point')) ?></label>
+                                                    <!-- Text -->
+                                                    <span class="form-control"> <?= e($order['pick_up_point']) ?></span>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div style="position: relative;z-index: -1;">
+                                                <?= $this->relationRender('order_packages_logs') ?> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-buttons">
+                            <div class="loading-indicator-container">
+                                <button
+                                        type="button"
+                                        class="oc-icon-trash-o btn-icon danger pull-right"
+                                        data-request="onDelete"
+                                        data-load-indicator="<?= e(trans('offline.mall::lang.order.deleting')) ?>"
+                                        data-request-confirm="<?= e(trans('offline.mall::lang.order.delete_confirm')) ?>">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="layout-cell w-300 form-sidebar control-scrollpanel">
+        <div class="layout-relative">
+            <div class="layout-absolute">
+                <div class="sidebar-content">
+                    <?= $this->makePartial('address', [
+                        'address' => $order['shipping_address'],
+                        'heading' => e(trans('offline.mall::lang.order.shipping_address')),
+                        'custom_address' => $shipping_address,
+                    ]) ?>
+
+                    <?php if( ! $order['shipping_address_same_as_billing']): ?>
+                        <?= $this->makePartial('address', [
+                            'address' => $order['billing_address'],
+                            'heading' => e(trans('offline.mall::lang.order.billing_address')),
+                            'custom_address' => $billing_address,
+                        ]) ?>
+                    <?php else: ?>
+                        <div class="sidebar-box sidebar-box--with-icon">
+                            <i class="icon icon-info-circle"></i>
+                            <?= e(trans('offline.mall::lang.order.shipping_address_is_same_as_billing')); ?>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

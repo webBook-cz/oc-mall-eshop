@@ -1,0 +1,35 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+property_groups:
+    label: 'offline.mall::lang.common.property_group'
+    deferredBinding: false
+    view:
+        list: $/offline/mall/models/propertygroup/columns_pivot.yaml
+        toolbarButtons: add|remove
+        recordUrl: '/offline/mall/propertygroups/update/:id'
+        defaultSort:
+            column: pivot[relation_sort_order]
+            direction: asc
+    manage:
+        form: $/offline/mall/models/propertygroup/fields_no_relation.yaml
+        list: $/offline/mall/models/propertygroup/columns.yaml
+
+products:
+    label: 'offline.mall::lang.common.product'
+    view:
+        list: $/offline/mall/models/product/columns.yaml
+        recordsPerPage: 10
+        recordUrl: offline/mall/products/update/:id
+        toolbarPartial: products_relation_partial
+
+review_categories:
+    label: 'offline.mall::lang.common.review_category'
+    view:
+        list: $/offline/mall/models/reviewcategory/columns.yaml
+        recordsPerPage: 10
+        toolbarButtons: add|create|remove|delete
+    manage:
+        form: $/offline/mall/models/reviewcategory/fields.yaml
+        list: $/offline/mall/models/reviewcategory/columns.yaml

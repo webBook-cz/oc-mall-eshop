@@ -1,0 +1,15 @@
+<div class="sidebar-box">
+    <h4 class="sidebar-box__heading">
+        <a href="<?= $addressUpdate . '/' . e($address['id']); ?>">
+            <?= $heading ?></a>
+    </h4>
+    <p>
+        <?= e($address['company']) ?><br/>
+        <?= e($address['name']) ?><br/>
+        <?= e($address['lines']) ?> <?= e($custom_address['house_number']) ?><br>
+        <?= e($address['zip']) ?>
+        <?= e($address['city']) ?><br/>
+        <?= e(optional($address['state'])['name']) ?><br/>
+        <?= e(optional($address['country'])['name']) ?>
+    </p>
+</div>

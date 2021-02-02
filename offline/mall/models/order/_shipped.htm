@@ -1,0 +1,10 @@
+<?php
+$key = $record->is_shipped ? 'shipped' : 'not_shipped';
+$class = $record->is_shipped ? 'warning' : 'mute';
+
+$key = ($record->order_state->flag == 'COMPLETE' && $record->is_shipped) ? 'delivered' : $key;
+$class = ($record->order_state->flag == 'COMPLETE' && $record->is_shipped) ? 'success' : $class;
+?>
+<span class="oc-icon-circle text-<?= $class ?>">
+    <?= $key == 'delivered' ? e(trans('webbook.mallextensions::lang.plugin.labels.delivered')) : e(trans('offline.mall::lang.order.' . $key)) ?>
+</span>

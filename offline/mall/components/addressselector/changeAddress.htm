@@ -1,0 +1,29 @@
+<form data-request="{{ __SELF__ }}::onUpdateAddress"
+      data-request-validate
+      data-request-success="$.publish('mall.address.update')">
+    <div class="form-group">
+        <label for="mall_address_id">{{ 'offline.mall::frontend.address_selector.select' | trans }}</label>
+        <select id="mall_address_id" class="form-control" name="id">
+            {% for address in addresses %}
+                <option value="{{ address.id }}" {{ address.id == activeAddress ? 'selected' : '' }}>
+                    {{ address.oneLiner }}
+                </option>
+            {% endfor %}
+            <option value="new">
+                {{ 'offline.mall::frontend.address_selector.create' | trans }}
+            </option>
+        </select>
+        <div data-validate-for="id"></div>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-sm js-change-address-apply" type="submit">
+            {{ 'offline.mall::frontend.apply' | trans }}
+        </button>
+        <a href="{{ __SELF__.addressPage | page({address: address.hashId, redirect: 'checkout'}) }}"
+           class="btn btn-light btn-sm>
+            {{ 'offline.mall::frontend.address_selector.edit' | trans }}
+        </a>
+    </div>
+
+</form>

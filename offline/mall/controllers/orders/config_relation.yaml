@@ -1,0 +1,22 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+payment_logs:
+    label: 'offline.mall::lang.common.payment'
+    view:
+        list: $/offline/mall/models/paymentlog/columns.yaml
+        toolbarButtons: delete
+    manage:
+        form: $/offline/mall/models/paymentlog/fields.yaml
+        recordsPerPage: 10
+order_packages_logs:
+    label: GLS změny stavu objednávky
+    readOnly: true
+    view:
+        list: $/webbook/mallextensions/models/orderpackage/columns.yaml
+        recordsPerPage: 200
+    manage:
+        list: $/webbook/mallextensions/models/orderpackage/columns.yaml
+        recordsPerPage: 200
+    emptyMessage: Žádná zaznamenaná změna stavu

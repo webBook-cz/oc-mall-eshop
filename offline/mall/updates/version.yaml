@@ -1,0 +1,353 @@
+1.0.0:
+    - 'First public release'
+    - create_offline_mall_products.php
+    - create_offline_mall_product_variants.php
+    - create_offline_mall_product_accessory.php
+    - create_offline_mall_custom_fields.php
+    - create_offline_mall_custom_field_options.php
+    - create_offline_mall_categories.php
+    - create_offline_mall_taxes.php
+    - create_offline_mall_product_tax.php
+    - create_offline_mall_carts.php
+    - create_offline_mall_cart_products.php
+    - create_offline_mall_shipping_methods.php
+    - create_offline_mall_shipping_method_tax.php
+    - create_offline_mall_country_tax.php
+    - create_offline_mall_shipping_method_rates.php
+    - create_offline_mall_cart_custom_field_value.php
+    - create_offline_mall_discounts.php
+    - create_offline_mall_cart_discount.php
+    - create_offline_mall_orders.php
+    - create_offline_mall_order_products.php
+    - create_offline_mall_addresses.php
+    - create_offline_mall_customers.php
+    - create_offline_mall_shipping_countries.php
+    - create_offline_mall_payments_log.php
+    - create_offline_mall_payment_methods.php
+    - create_offline_mall_payment_method_tax.php
+    - create_offline_mall_product_custom_field.php
+    - create_offline_mall_properties.php
+    - create_offline_mall_property_values.php
+    - create_offline_mall_order_states.php
+    - create_offline_mall_brands.php
+    - create_offline_mall_image_sets.php
+    - create_offline_mall_property_property_group.php
+    - create_offline_mall_property_groups.php
+    - create_offline_mall_category_property_group.php
+    - create_offline_mall_customer_groups.php
+    - create_offline_mall_customer_group_prices.php
+    - create_offline_mall_price_categories.php
+    - create_offline_mall_prices.php
+    - create_offline_mall_product_prices.php
+    - create_offline_mall_category_product_sort_order.php
+    - create_offline_mall_currencies.php
+    - allow_non_unique_emails_for_rainlab_user.php
+    - add_customer_group_id_to_rainlab_users.php
+    - create_offline_mall_notifications.php
+    - database_seeder.php
+1.0.2:
+    - Fixed event handler for welcome email
+1.0.3:
+    - Fixed build problems
+1.0.4:
+    - Added russian translations (thanks to @HomaEEE)
+1.0.5:
+    - Optimized SQLite support
+1.0.6:
+    - Minor bugfixes
+1.0.7:
+    - Added "on sale" filter option to products filter component (run php artisan mall:reindex to get this feature)
+1.0.8:
+    - Optimized handling of manually created customer accounts
+1.0.9:
+    - Added option to force filter string for Products component (https://offline-gmbh.github.io/oc-mall-plugin/components/products.html#filter-string)
+1.0.10:
+    - Fixed usage of single Category as menu item (thanks to @PrestaSafe)
+1.0.11:
+    - Fixed handling of 0 as price value (thanks to @ajsaces)
+1.0.12:
+    - Allow Products component without category filter (thanks to @amdad)
+1.0.13:
+    - Fixed signup for guest accounts
+    - allow_non_unique_emails_for_rainlab_user.php
+1.0.14:
+    - Minor improvements to Cart and Products components
+1.0.15:
+    - Added description field to Category model
+    - add_description_field_to_category.php
+1.0.16:
+    - Fixed manage shipping methods permissions
+1.0.17:
+    - Auto update price display when custom field options are changed
+1.0.18:
+    - Minor bugfixes and improvements
+1.0.19:
+    - Minor bugfixes and improvements
+1.0.20:
+    - Optimized handling of customer group specific prices
+1.0.21:
+    - Optimized RainLab.Translate integration (thanks to @alxy)
+1.0.22:
+    - Updated Omnipay to v3, added list views for payment logs and customer addresses. If you have custom payment providers that use Omnipay make sure that they are compatible with v3 before updating
+1.1.0:
+    - |
+        !!! A product can now belong to multiple categories. If you are using the `$product->category`
+        relationship directly make sure to update it to use the new `$product->categories` relationship.
+        Existing products will be migrated to the new database structure during this update.
+    - migrate_categories_to_belongs_to_many_relation.php
+1.1.1:
+    - |
+        !!! New database-backed index. To increase the performance of this plugin the product index can now be
+        stored in the database if you use MySQL 5.7+ or MariaDB 10.2+ (support will be auto-detected).
+        After this update your index will have to be rebuilt by running "php artisan mall:reindex" from the terminal.
+        Between the completition of the update and the re-indexing your store will be empty!
+        Make sure to consider this downtime when deploying to a production system.
+    - handle_index_table.php
+1.1.2:
+    - Fixed manual sort orders when using new table-backed index
+1.1.3:
+    - Further improved MySQL 5.7 compatibility
+1.1.4:
+    - "Fixed bug in mall:check command"
+1.1.5:
+    - Added simple scoreboard to Orders page, fixed problem with very long variant names
+    - use_text_columns_for_variant_names.php
+1.1.6:
+    - Fixed display of subcategories in Rainlab.Pages menus
+1.1.7:
+    - Fixed calculation of country specific product taxes
+1.1.8:
+    - Optimized logging of failed payments
+1.1.9:
+    - Fixed payment logging issue
+    - use_text_columns_for_payment_log.php
+1.1.10:
+    - Optimized saving of pricing and stock information
+1.1.11:
+    - Minor changes to payment log display
+1.1.12:
+    - Update jsonable columns to mediumtext type / fixed product dropdown in discount form
+    - update_jsonable_columns_to_mediumtext.php
+1.1.13:
+    - Optimized handling of race conditions during order creation
+1.1.14:
+    - Fixed deletion of discounts
+1.1.15:
+    - Added italian translations (thanks to @marcomessa)
+1.2.0:
+    - Customers can now re-use payment methods (like Credit cards)
+    - create_offline_mall_customer_payment_methods.php
+1.2.1:
+    - Minor bug fixes and optimizations
+    - remove_description_column_from_order_products.php
+    - remove_payment_data_column_from_orders_table.php
+1.2.2:
+    - Fixed handling of custom field color values, allow single category menu item to be replaced by its products    
+1.2.3:
+    - Added flash messages to add to cart events
+1.2.4:
+    - Added support for RainLab.User account activation links ("user" mode only, "admin" mode is unsupported)
+1.2.5:
+    - Fixed index entry creation of newly created variants
+1.2.6:
+    - Updated italian translations (thanks to @Cryhex), fixed Variant indexing bug
+1.2.7:
+    - Fixed some minor bugs
+1.2.8:
+    - "Added sort by name option to Products component (requires `php artisan mall:reindex` to work)"
+1.3.0:
+    - Added Google Merchant Center integration
+    - add_identifier_columns_for_products_and_variants.php
+    - add_description_columns_to_variants.php
+    - add_brand_column_to_order_products_table.php
+    - add_name_column_to_index_table.php
+1.3.1:
+    - "Added Google Tag Manager integration (see https://tinyurl.com/mall-analytics-docs)"
+1.3.2:
+    - Minor bug fix release
+1.3.3:
+    - Fixed inheritance of Variant descriptions
+1.3.4:
+    - Added french translations (thanks to @willouch)
+1.3.5:
+    - Minor Google Merchant Feed integration fixes
+1.3.6:
+    - |
+        Optimized MySQL/MariaDB Query compatibility,
+        made the use of states/counties in addresses optional (configurable via the backend settings),
+        added redirectOnPropertyChange property to Product component
+    - set_use_state_default_setting.php
+1.3.7:
+    - Minor bugfix release
+1.3.8:
+    - Added new mall.cart.product.updated and mall.cart.product.quantityChanged events
+1.3.9:
+    - Fixed minor dataLayer bugs
+1.3.10:
+    - "Re-use Eloquent model events to trigger `mall.cart.product.*` events. If you added custom event listeners for any of these events make sure to update your function signature to only accept a single CartProduct model (see https://offline-gmbh.github.io/oc-mall-plugin/development/events.html#cart)"
+1.3.11:
+    - Added links to edit and preview customer data to orders list (thanks to @Eoler)      
+1.3.12:
+    - Bugfix release
+1.3.13:
+    - Fixed payment log display in backend order list
+1.3.14:
+    - !!! This release does not contain any code updates. If you are using the mall demo theme make sure to patch the following two lines to prevent XSS attacks on your website https://bit.ly/2Y4lUs3
+1.3.15:
+    - Added embeds repeater to Product model to add custom embed code (like videos)
+    - add_embeds_column_to_products_table.php
+1.4.0:
+    - Added Wishlists feature
+    - create_offline_mall_wishlists.php
+    - create_offline_mall_wishlist_items.php
+1.4.1:
+    - "!!! Added terms and conditions checkbox to signup form. If you manually modified the signup form partials make sure to add the checkbox as well since it is being validated as required by default. (see https://tinyurl.com/yyanm7eo)"
+1.5.0:
+    - Added Services feature (e. g. extended warranty, on-site installation)
+    - create_offline_mall_services.php
+1.5.1:
+    - "!!! There is now a changelog documenting breaking changes with every future release. Make sure to check it out: https://bit.ly/2kCk2F9"
+1.5.2:
+    - Various bugfixes
+1.5.3:
+    - Another bugfix release
+1.6.0:
+    - Added Reviews. Speaking of reviews, did you already add a review for this plugin ;-)? https://octobercms.com/plugin/offline-mall
+    - create_offline_mall_reviews.php
+1.6.1:
+    - "Bugfix release. Don't forget to check out the new changelog for updates to 1.6.0: https://offline-gmbh.github.io/oc-mall-plugin/changelog/1.6.0.html"
+1.6.2:
+    - Added forceShippingPrice method to Cart model
+1.6.3:
+    - Bugfix release
+1.7.0:
+    - Added support for virtual products
+    - add_virtual_products_support.php
+1.7.1: 
+    - Bugfix for parent category dropdown in backend
+1.7.2: 
+    - Fixed bug where product entries in RainLab.Pages menus included the wrong variant id
+1.7.3: 
+    - Minor Bugfix when editing a Review on the frontend
+1.7.4: 
+    - Bugfix release
+1.7.5: 
+    - Updated russian translations (thanks to @igor-tv)
+1.7.6: 
+    - Made forceShippingPrice feature to only override the price for a specific shipping method. Make sure to add the new ID parameter in case you use this feature in your custom code.
+1.7.7: 
+    - Bugfix release
+1.7.8: 
+    - Another bugfix release
+1.7.9: 
+    - Added showShipping property to the Cart component. This allows you to display a cart without including any shipping information.
+1.7.10:
+    - Added a valid from date for discounts
+    - add_valid_from_column_to_discounts_table.php
+1.7.11:
+    - Bugfix release
+1.8.0:
+    - Added PDF invoices and "export as PDF" support for wishlists (https://tinyurl.com/t6y2pxn)
+    - add_pdf_partial_to_payment_method.php
+1.8.1:
+    - Fixed price sorting in Products component using the MySQL index
+1.8.2:
+    - Added onClear method to Wishlist component
+1.8.3:
+    - Bugfix release
+1.8.4:
+    - Prices are now correctly indexed in all registered currencies. Run php artisan mall:index to benefit of these optimizations.
+1.8.5:
+    - The PDF button in the Wishlists component remains visible now after a Product has been removed or edited by the user
+1.9.0:
+    - "Better handling of country specific taxes, multi-language e-mails, translatable property values and more! (Full Changelog: https://offline-gmbh.github.io/oc-mall-plugin/changelog/1.9.0.html)"
+    - add_is_default_column_to_taxes_table.php
+1.9.1:
+    - Bugfix release
+1.9.2:
+    - Fixed handling of country specific Taxes for Wishlists
+1.9.3:
+    - Added shipping method support for Wishlists
+    - add_shipping_method_id_to_wishlists_table.php
+    - set_default_tax.php
+1.9.4:
+    - Another bugfix release
+1.9.5:
+    - Added Customer relation to Wishlist model
+1.10.0:
+    - "!!! Added property values to default Product component markup. This will add new markup that needs styling! See Changelog: https://tinyurl.com/txwozkj"
+1.10.1:
+    - Bugfix release
+1.10.2:
+    - "!!! Do not update until version 1.11 is released. There is a bug in RainLab.Translate because of which translations won't be loaded correctly. Also do not update RainLab.Translate until this bug is fixed: https://github.com/rainlab/translate-plugin/issues/539. We will release a new version as soon as everything is back in order."
+1.11.0:
+    - "!!! Fixed RainLab.Translate issue. Also, RainLab.Translate is now a required dependency for this plugin. Make sure to install at least version 1.6.6 of RainLab.Translate before installing this update."
+1.11.1:
+    - "Optimized compatibility with Laravel 6"
+1.11.2:
+    - "A product's short description supports now multi-line text input"
+1.11.3:
+    - "A variants's short description also supports multi-line text input now :)"
+    - update_description_short_column_of_products_table.php
+    - update_description_short_column_of_product_variants_table.php
+1.11.4:
+    - "Save quantity for Wishlist items correctly"
+1.11.5:
+    - Added search boxes to various Product relation managers
+1.11.6:
+    - A customer can now set a default shipping and billing address on the profile page. Don't forget to add some styles! (see https://tinyurl.com/vpr3g8x)
+    - add_rounding_column_to_currencies_table.php
+1.11.7:
+    - Added Czech translations, fixed Review approvals in Product form
+1.11.8:
+    - Added Farsi translations
+1.11.9:
+    - Minor bugfix release
+1.11.10:
+    - Fixed multi-lang search with recent RainLab.Translate versions
+1.11.11:
+    - Fixed display of e-mail address in orders list
+1.11.12:
+    - Various bugfixes
+1.11.13:
+    - Fixed handling of virtual product downloads for logged out customers 
+1.11.14:
+    - Fixed infinite loop with certain Review Categories setups
+1.11.15:
+    - Bugfix release
+1.11.16:
+    - Added cart product count and quantity sum info to the mall.cart.productAdded event to make consistent counter updates in the frontend easier (see https://tinyurl.com/ybxl9jlf)
+1.11.17:
+    - Added `mall.order.afterCreate` event, fixed various bugs
+1.11.18:
+    - Added short description field to Category model
+    - add_short_description_field_to_category.php
+1.11.19:
+    - Minor bugfix release
+1.11.20:
+    - Added "Customer Group" discount trigger
+    - add_user_belongs_to_group_discount.php
+1.11.21:
+    - Minor bugfix to color custom field type
+1.11.22:
+    - Bugfix release
+1.11.23:
+    - Added width, height and length fields to Products and Variants
+    - add_width_and_length_to_product_model.php
+1.11.24:
+    - Added Google Category ID field to Categories (Google Merchant integration)
+    - add_google_category_id_to_categories_table.php
+1.11.25:
+    - Bugfix release
+1.11.26:
+    - Added date and datetime Property field types
+1.11.27:
+    - Bugfix release
+1.11.28:
+    - Bugfix release
+1.11.29:
+    - Bugfix release
+1.11.30:
+    - Fixed mall.index.extend event handling
+1.11.31:
+    - Fixed handling of checkbox properties, prevent discount codes from being applied multiple times by the same user
