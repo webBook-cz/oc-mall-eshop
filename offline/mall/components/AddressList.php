@@ -89,7 +89,7 @@ class AddressList extends MallComponent
     {
         $this->updateDefaultAddressFromUser('shipping');
 
-        Flash::success(trans('offline.mall::lang.components.addressList.messages.default_shipping_address_changed'));
+        Flash::success('Dodací adresa byla změněna');
 
         return [
             '.mall-address-list__list' => $this->renderPartial($this->alias . '::list'),
@@ -104,7 +104,7 @@ class AddressList extends MallComponent
     {
         $this->updateDefaultAddressFromUser('billing');
 
-        Flash::success(trans('offline.mall::lang.components.addressList.messages.default_billing_address_changed'));
+        Flash::success('Fakturační adresa byla změněna');
 
         return [
             '.mall-address-list__list' => $this->renderPartial($this->alias . '::list'),
